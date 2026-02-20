@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Willy Susanto | Portofolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        /* Color Palette Soft Retro */
+        :root {
+            --bg-color: #f4f1ea;      /* Warm beige */
+            --card-bg: #e9e4d4;       /* Slightly darker beige for cards */
+            --text-main: #2c2c2c;     /* Dark gray/black */
+            --text-muted: #5a5a5a;
+            --accent-primary: #d05c4b; /* Soft terracotta red/orange */
+            --accent-secondary: #4b7b75; /* Muted retro teal */
+            --border-color: #d1ccbd;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+
+        h1, h2, h3 {
+            font-family: 'IBM Plex Mono', monospace;
+            font-weight: 700;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: rgba(244, 241, 234, 0.95);
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid var(--border-color);
+            z-index: 1000;
+            backdrop-filter: blur(5px);
+        }
+
+        nav .logo {
+            font-size: 1.5rem;
+            color: var(--accent-primary);
+            font-family: 'IBM Plex Mono', monospace;
+            font-weight: 700;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--text-main);
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: var(--accent-secondary);
+        }
+
+        /* Sections General */
+        section {
+            padding: 100px 5% 60px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: var(--accent-secondary);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        /* Hero / Profile Section */
+        #profil {
+            text-align: center;
+            align-items: center;
+        }
+
+        .profile-container {
+            max-width: 800px;
+        }
+
+        .greeting {
+            font-size: 1.2rem;
+            color: var(--accent-primary);
+            font-family: 'IBM Plex Mono', monospace;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        #profil h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            line-height: 1.1;
+        }
+
+        #profil p {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 28px;
+            background-color: var(--accent-primary);
+            color: #fff;
+            text-decoration: none;
+            font-weight: 600;
+            border-radius: 4px;
+            transition: transform 0.2s, background-color 0.2s;
+            border: 2px solid var(--accent-primary);
+        }
+
+        .btn:hover {
+            background-color: transparent;
+            color: var(--accent-primary);
+            transform: translateY(-3px);
+        }
+
+        /* Skills Section */
+        #kemampuan {
+            background-color: var(--card-bg);
+            border-top: 2px solid var(--border-color);
+            border-bottom: 2px solid var(--border-color);
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .skill-card {
+            background-color: var(--bg-color);
+            padding: 2rem;
+            border-radius: 8px;
+            border: 2px solid var(--border-color);
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent-secondary);
+        }
+
+        .skill-card h3 {
+            color: var(--accent-primary);
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        /* Projects Section */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .project-card {
+            background-color: var(--card-bg);
+            border: 2px solid var(--border-color);
+            border-radius: 8px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .project-img {
+            width: 100%;
+            height: 200px;
+            background-color: var(--border-color);
+            object-fit: cover;
+        }
+
+        .project-content {
+            padding: 1.5rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .project-content h3 {
+            margin-bottom: 0.5rem;
+            color: var(--text-main);
+        }
+
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .tag {
+            font-size: 0.8rem;
+            padding: 4px 8px;
+            background-color: var(--bg-color);
+            border: 1px solid var(--accent-secondary);
+            color: var(--accent-secondary);
+            border-radius: 4px;
+            font-family: 'IBM Plex Mono', monospace;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 2rem;
+            background-color: var(--text-main);
+            color: var(--bg-color);
+            font-family: 'IBM Plex Mono', monospace;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            #profil h1 { font-size: 2.5rem; }
+            nav ul { display: none; } /* Simple mobile hide for now */
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo">WS.</div>
+        <ul>
+            <li><a href="#profil">Profil</a></li>
+            <li><a href="#kemampuan">Kemampuan</a></li>
+            <li><a href="#projek">Projek</a></li>
+        </ul>
+    </nav>
+
+    <section id="profil">
+        <div class="profile-container">
+            <span class="greeting">Halo, perkenalkan saya</span>
+            <h1>Willy Susanto</h1>
+            <p>Seorang mahasiswa informatika yang memiliki ketertarikan kuat dalam membangun solusi perangkat lunak. Berfokus pada pengembangan logika pemrograman yang solid, perancangan basis data, hingga eksplorasi arsitektur web dan jaringan komputer.</p>
+            <a href="#projek" class="btn">Lihat Portofolio Saya</a>
+        </div>
+    </section>
+
+    <section id="kemampuan">
+        <h2 class="section-title">Keahlian & Kemampuan</h2>
+        <div class="skills-grid">
+            <div class="skill-card">
+                <h3>Core Programming</h3>
+                <p>Memiliki fondasi kuat dalam bahasa C. Terbiasa memecahkan masalah menggunakan algoritma fundamental, sorting, hingga pengelolaan program berbasis modul (header & source code).</p>
+            </div>
+            <div class="skill-card">
+                <h3>Web Development</h3>
+                <p>Mampu membangun antarmuka dan sistem web menggunakan kombinasi HTML, CSS, JavaScript, serta bahasa sisi server seperti PHP untuk menciptakan platform yang fungsional.</p>
+            </div>
+            <div class="skill-card">
+                <h3>Database & Jaringan</h3>
+                <p>Terbiasa merancang basis data relasional dan menggunakan kueri SQL (DDL/DML). Memiliki pemahaman konfigurasi jaringan dasar menggunakan *tools* seperti Cisco Packet Tracer.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="projek">
+        <h2 class="section-title">Projek Terselesaikan</h2>
+        <div class="projects-grid">
+            
+            <div class="project-card">
+                <img src="https://via.placeholder.com/400x200/d1ccbd/5a5a5a?text=Foto+Website+Seminar" alt="Website Seminar" class="project-img">
+                <div class="project-content">
+                    <h3>Sistem Website Seminar Profesi</h3>
+                    <div class="project-tags">
+                        <span class="tag">PHP</span>
+                        <span class="tag">HTML/CSS</span>
+                        <span class="tag">JavaScript</span>
+                    </div>
+                    <p>Pengembangan *full-stack* untuk platform pendaftaran dan informasi seminar profesional. Projek ini mencakup pembuatan struktur antarmuka, fungsionalitas interaktif, hingga persiapan *deployment* ke server hosting.</p>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <img src="https://via.placeholder.com/400x200/d1ccbd/5a5a5a?text=Console+Aplikasi+C" alt="Queue System" class="project-img">
+                <div class="project-content">
+                    <h3>Sistem Antrean Rumah Sakit</h3>
+                    <div class="project-tags">
+                        <span class="tag">Bahasa C</span>
+                        <span class="tag">Algoritma</span>
+                    </div>
+                    <p>Membangun program berbasis CLI menggunakan bahasa C untuk mensimulasikan dan mengelola alur antrean pasien di rumah sakit secara efisien, mengimplementasikan struktur data dasar dan pemecahan file modular.</p>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <img src="https://via.placeholder.com/400x200/d1ccbd/5a5a5a?text=Algoritma+Sorting" alt="Sorting Visualization" class="project-img">
+                <div class="project-content">
+                    <h3>Implementasi Algoritma Sorting</h3>
+                    <div class="project-tags">
+                        <span class="tag">Bahasa C</span>
+                        <span class="tag">Struktur Data</span>
+                    </div>
+                    <p>Projek akademis yang berfokus pada analisis dan penerapan berbagai metode pengurutan data (*Bubble, Merge, Quick, Selection Sort*) untuk memahami kompleksitas waktu dan efisiensi algoritma.</p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Willy Susanto. Dibangun dengan fokus dan dedikasi.</p>
+    </footer>
+
+</body>
+</html>
